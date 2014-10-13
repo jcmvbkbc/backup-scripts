@@ -1,0 +1,6 @@
+Sample usage:
+
+$ crontab -l
+30 5 1,15 * * /home/dumb/bin/copy-openkarelia.org-rootfs-inc
+30 5 2-14,16-31 * * /home/dumb/bin/copy-openkarelia.org-rootfs-inc --incremental
+30 17 * * * /home/dumb/bin/copy-openkarelia.org-rootfs-inc --incremental
