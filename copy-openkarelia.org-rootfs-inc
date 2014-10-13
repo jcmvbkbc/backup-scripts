@@ -1,0 +1,9 @@
+#! /bin/bash
+
+export BACKUP_DIRS="home/ ."
+export SITE=openkarelia.org
+export SSH='ssh jcmvbkbc@openkarelia.org'
+#sudo route del -host 37.200.69.196 tap2
+exec `dirname "$0"`/copy-any-rootfs-inc "$@"
+#`dirname "$0"`/copy-any-rootfs
+#sudo route add -host 37.200.69.196 tap2

@@ -1,0 +1,8 @@
+#! /bin/bash
+
+export SITE=museums
+export SSH='ssh jcmvbkbc@37.200.69.196'
+#sudo route del -host 37.200.69.196 tap2
+exec `dirname "$0"`/copy-any-rootfs
+#`dirname "$0"`/copy-any-rootfs
+#sudo route add -host 37.200.69.196 tap2

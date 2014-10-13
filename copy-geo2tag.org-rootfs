@@ -1,0 +1,4 @@
+#! /bin/bash
+
+export SITE=geo2tag.org
+exec `dirname "$0"`/copy-any-rootfs
