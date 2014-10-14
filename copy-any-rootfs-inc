@@ -45,11 +45,15 @@ do
 
     if cat ${SERIES}/${SITE}-${TAIL}.tgz | tar -tz >fl-new 2>err && ( cd ${SERIES} ; md5sum -c filelist.md5sum ) 2>err
     then
-        #diff -bu fl fl-new > fl-diff
-        echo "" > fl-diff
-        echo "Changed: $(grep '^[+-][^+-]' fl-diff | wc -l)" >> headline
+        if [ $incremental = 1 ] ; then
+            grep -v ".*/" fl-new > fl-diff
+            echo "Changed (increment): $(wc -l fl-diff)" >> headline
+        else
+            diff -bu fl fl-new > fl-diff
+            echo "Changed (since last full dump): $(grep '^[+-][^+-]' fl-diff | wc -l)" >> headline
+            mv fl-new fl
+        fi
         cat headline fl-diff bottomline | mail -s "${SITE} backup diff" ${MAILTO}
-        mv fl-new fl
         break
     else
         if [ $incremental = 1 ] ; then
